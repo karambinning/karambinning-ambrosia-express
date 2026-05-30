@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ambrosia Express — Late-night Chinese, Rad Valley Road, Shrewsbury</title>
+<meta name="description" content="Neighbourhood Chinese kitchen on Rad Valley Road, Copthorne. Chow mein, curries, sweet &amp; sour. Open six nights until 10pm — 10:30pm Friday and Saturday. Call 01743 351511." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#15110D;
+    --ink-2:#221A14;
+    --cream:#F4ECD8;
+    --cream-2:#EADFC4;
+    --amber:#E8A52E;
+    --amber-deep:#B97F1E;
+    --tangerine:#D8431A;
+    --lacquer:#6B1B1F;
+    --display:"Fraunces", "Cormorant Garamond", Georgia, serif;
+    --body:"Manrope", system-ui, sans-serif;
+    --rhythm:clamp(.95rem, .65rem + .9vw, 1.1rem);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:var(--body);
+    font-size:var(--rhythm);
+    line-height:1.55;
+    font-weight:400;
+    overflow-x:hidden;
+  }
+  /* grain overlay */
+  body::before{
+    content:"";
+    position:fixed;inset:0;pointer-events:none;z-index:50;
+    opacity:.06;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.85'/></svg>");
+  }
+  h1,h2,h3,h4{font-family:var(--display);font-weight:700;text-wrap:balance;line-height:1}
+  p{text-wrap:pretty;hyphens:auto}
+  a{color:inherit;text-decoration:none}
+  a:focus-visible{outline:2px dashed var(--amber);outline-offset:4px;border-radius:2px}
+
+  /* ─── top hairline / wordmark ─────────────────────────────────── */
+  .topline{
+    position:absolute;top:0;left:0;right:0;z-index:5;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:1.4rem clamp(1.1rem, 4vw, 3.5rem);
+    font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--cream);
+  }
+  .topline .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--amber);margin-right:.55rem;vertical-align:middle;box-shadow:0 0 14px var(--amber)}
+  .topline a{border-bottom:1px solid transparent;transition:border-color .2s}
+  .topline a:hover{border-bottom-color:var(--amber)}
+
+  /* ─── hero ─────────────────────────────────────────────────────── */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:6rem clamp(1.1rem, 4vw, 3.5rem) 2.2rem;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  /* slow ember glow */
+  @property --glow{syntax:"<angle>";initial-value:0deg;inherits:false}
+  .hero::after{
+    content:"";position:absolute;inset:-30%;z-index:-1;
+    background:
+      radial-gradient(ellipse 60% 40% at 22% 80%, rgba(232,165,46,.22), transparent 70%),
+      radial-gradient(ellipse 50% 35% at 78% 30%, rgba(216,67,26,.16), transparent 75%),
+      conic-gradient(from var(--glow) at 50% 70%, rgba(232,165,46,.08), transparent 30%, rgba(107,27,31,.10) 60%, transparent 90%);
+    animation:emberDrift 28s linear infinite;
+    filter:blur(2px);
+  }
+  @keyframes emberDrift{to{--glow:360deg}}
+
+  .hero__title{
+    font-size:clamp(3.4rem, 16vw, 13rem);
+    letter-spacing:-0.045em;
+    font-weight:900;
+    color:var(--cream);
+    line-height:.86;
+    text-wrap:balance;
+  }
+  .hero__title em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--amber);
+  }
+  .hero__sub{
+    margin-top:1.6rem;
+    max-width:34ch;
+    font-size:clamp(1.05rem, 1.6vw, 1.35rem);
+    color:var(--cream);
+    opacity:.85;
+    line-height:1.45;
+  }
+  .hero__grid{
+    margin-top:clamp(2rem, 5vh, 3.4rem);
+    display:grid;
+    grid-template-columns:1fr;
+    gap:1.6rem;
+    align-items:end;
+  }
+  @media (min-width:780px){
+    .hero__grid{grid-template-columns:auto 1fr;gap:3rem}
+  }
+  .phone-cta{
+    display:inline-flex;flex-direction:column;align-items:flex-start;
+    border-top:1px solid rgba(244,236,216,.25);
+    padding-top:1rem;
+    transition:transform .25s ease;
+  }
+  .phone-cta:hover{transform:translateY(-2px)}
+  .phone-cta__label{
+    font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--amber);
+  }
+  .phone-cta__num{
+    font-family:var(--display);
+    font-size:clamp(2.2rem, 7vw, 4.2rem);
+    font-weight:700;
+    font-style:italic;
+    color:var(--cream);
+    letter-spacing:-.02em;
+    line-height:1;
+    margin-top:.4rem;
+    transition:color .25s;
+  }
+  .phone-cta:hover .phone-cta__num{color:var(--amber)}
+  .meta-block{
+    font-size:.86rem;line-height:1.6;color:var(--cream);opacity:.85;
+    text-align:left;
+  }
+  @media (min-width:780px){.meta-block{text-align:right}}
+  .meta-block strong{font-weight:500;color:var(--amber);display:block;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:.3rem}
+
+  /* ─── marquee strip ────────────────────────────────────────────── */
+  .marquee{
+    background:var(--amber);
+    color:var(--ink);
+    overflow:hidden;
+    border-top:1px solid var(--amber-deep);
+    border-bottom:1px solid var(--amber-deep);
+    padding:1rem 0;
+  }
+  .marquee__track{
+    display:inline-flex;gap:3rem;white-space:nowrap;
+    animation:scroll 38s linear infinite;
+    font-family:var(--display);
+    font-style:italic;
+    font-size:clamp(1.1rem, 2.2vw, 1.7rem);
+    font-weight:700;
+  }
+  .marquee__track span{display:inline-flex;align-items:center;gap:3rem}
+  .marquee__track span::after{content:"✦";color:var(--lacquer);font-style:normal}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){
+    .marquee__track{animation-duration:300s}
+    .hero::after{animation:none}
+  }
+
+  /* ─── section: kitchen note ────────────────────────────────────── */
+  .section{padding:clamp(4rem, 9vh, 7.5rem) clamp(1.1rem, 4vw, 3.5rem)}
+  .section--cream{background:var(--cream);color:var(--ink-2)}
+  .section--ink{background:var(--ink);color:var(--cream)}
+  .section--lacquer{background:var(--lacquer);color:var(--cream)}
+
+  .kitchen{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:2.2rem;
+    max-width:1200px;
+    margin:0 auto;
+    align-items:start;
+  }
+  @media (min-width:880px){
+    .kitchen{grid-template-columns:minmax(0,5fr) minmax(0,4fr);gap:5rem}
+  }
+  .kitchen__eyebrow{
+    font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--tangerine);
+    margin-bottom:1.4rem;
+  }
+  .kitchen__title{
+    font-size:clamp(2.4rem, 5.5vw, 4.6rem);
+    font-weight:700;
+    line-height:.95;
+    letter-spacing:-.025em;
+    color:var(--ink);
+  }
+  .kitchen__title em{font-style:italic;font-weight:400;color:var(--lacquer)}
+  .kitchen__body{
+    font-size:clamp(1.05rem, 1.4vw, 1.2rem);
+    line-height:1.6;
+    color:var(--ink-2);
+  }
+  .kitchen__body p + p{margin-top:1.2rem}
+  .kitchen__rating{
+    display:inline-flex;align-items:center;gap:.7rem;
+    margin-top:2rem;
+    padding:.65rem 1.1rem;
+    border:1px solid rgba(21,17,13,.18);
+    border-radius:999px;
+    font-size:.82rem;letter-spacing:.05em;
+    color:var(--ink);
+  }
+  .kitchen__rating .stars{color:var(--amber-deep);font-size:.95rem;letter-spacing:.12em}
+
+  /* ─── menu broadsheet ──────────────────────────────────────────── */
+  .menu{
+    max-width:1180px;margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:3rem 4.5rem;
+  }
+  @media (min-width:780px){.menu{grid-template-columns:repeat(2,1fr)}}
+  .menu-head{
+    grid-column:1/-1;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:2rem;flex-wrap:wrap;
+    border-bottom:1px solid rgba(244,236,216,.2);
+    padding-bottom:2rem;margin-bottom:1rem;
+  }
+  .menu-head h2{
+    font-size:clamp(2.6rem, 6.5vw, 5.5rem);
+    font-style:italic;
+    font-weight:400;
+    color:var(--cream);
+    letter-spacing:-.025em;
+    line-height:.9;
+  }
+  .menu-head h2 strong{font-style:normal;color:var(--amber);font-weight:700;display:block}
+  .menu-head__aside{
+    font-size:.85rem;line-height:1.5;max-width:30ch;opacity:.75;text-align:right;
+  }
+  .menu-col{padding-top:.6rem}
+  .menu-col h3{
+    font-family:var(--display);
+    font-style:italic;
+    font-size:1.35rem;
+    font-weight:400;
+    color:var(--amber);
+    margin-bottom:1rem;
+    border-bottom:1px solid rgba(232,165,46,.3);
+    padding-bottom:.6rem;
+    letter-spacing:.01em;
+  }
+  .menu-col h3 .num{
+    font-style:normal;font-family:var(--body);
+    font-size:.7rem;letter-spacing:.2em;
+    color:var(--cream);opacity:.4;margin-right:.8rem;
+  }
+  .menu-col ul{list-style:none}
+  .menu-col li{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:1rem;
+    padding:.55rem 0;
+    font-size:1.02rem;
+    border-bottom:1px dotted rgba(244,236,216,.13);
+  }
+  .menu-col li:last-child{border-bottom:none}
+  .menu-col li span.tag{
+    font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--tangerine);align-self:center;
+  }
+  .menu-col li em.note{
+    font-style:italic;font-size:.85rem;color:var(--cream);opacity:.55;
+    grid-column:1/-1;line-height:1.4;margin-top:.15rem;
+  }
+  .menu-foot{
+    grid-column:1/-1;
+    margin-top:2.5rem;
+    padding-top:2rem;
+    border-top:1px solid rgba(244,236,216,.2);
+    font-size:.92rem;line-height:1.5;
+    color:var(--cream);opacity:.7;
+    font-style:italic;
+    max-width:60ch;
+  }
+
+  /* ─── order panel ──────────────────────────────────────────────── */
+  .order{
+    max-width:1180px;margin:0 auto;
+    display:grid;grid-template-columns:1fr;gap:3rem;
+  }
+  @media (min-width:880px){.order{grid-template-columns:1.2fr 1fr}}
+  .order__big a{
+    display:block;
+    font-family:var(--display);
+    font-size:clamp(3rem, 11vw, 7.5rem);
+    font-weight:700;
+    font-style:italic;
+    line-height:.95;
+    letter-spacing:-.025em;
+    color:var(--cream);
+    transition:color .25s, transform .3s cubic-bezier(.2,.7,.2,1);
+  }
+  .order__big a:hover{color:var(--amber);transform:translateX(8px)}
+  .order__big small{
+    display:block;
+    font-family:var(--body);font-style:normal;
+    font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--amber);font-weight:500;
+    margin-bottom:1rem;
+  }
+  .order__notes{
+    margin-top:2rem;font-size:1rem;line-height:1.65;
+    color:var(--cream);opacity:.8;max-width:42ch;
+  }
+  .hours-table{
+    border-collapse:collapse;width:100%;font-size:1rem;
+    color:var(--cream);
+  }
+  .hours-table caption{
+    text-align:left;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--amber);margin-bottom:1rem;padding-bottom:1rem;
+    border-bottom:1px solid rgba(244,236,216,.2);
+  }
+  .hours-table th, .hours-table td{
+    padding:.85rem 0;
+    border-bottom:1px dotted rgba(244,236,216,.15);
+    text-align:left;
+    font-weight:400;
+  }
+  .hours-table th{
+    font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:1.1rem;
+  }
+  .hours-table td{text-align:right;font-variant-numeric:tabular-nums}
+  .hours-table tr.closed td{color:var(--tangerine);font-style:italic}
+  .hours-table tr.closed th{opacity:.55}
+  .hours-table tr:last-child th, .hours-table tr:last-child td{border-bottom:none}
+
+  /* ─── find us / address card ───────────────────────────────────── */
+  .find{
+    max-width:1180px;margin:0 auto;
+    display:grid;grid-template-columns:1fr;gap:2.6rem;align-items:center;
+  }
+  @media (min-width:880px){.find{grid-template-columns:1fr 1fr;gap:5rem}}
+  .find__addr{
+    font-family:var(--display);
+    font-style:italic;
+    font-size:clamp(1.7rem, 3.4vw, 2.6rem);
+    line-height:1.25;
+    color:var(--cream);
+  }
+  .find__addr strong{display:block;font-style:normal;color:var(--amber);font-weight:700;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;margin-bottom:1.2rem}
+  .find__addr a.maplink{
+    display:inline-block;margin-top:1.8rem;
+    font-family:var(--body);font-style:normal;font-size:.85rem;
+    letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+    color:var(--amber);
+    border-bottom:1px solid var(--amber);
+    padding-bottom:.2rem;
+    transition:opacity .2s, letter-spacing .25s;
+  }
+  .find__addr a.maplink:hover{letter-spacing:.22em;opacity:.85}
+  .find__service{
+    display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;
+  }
+  .service-card{
+    padding:1.6rem 1.4rem;
+    border:1px solid rgba(244,236,216,.2);
+    background:rgba(244,236,216,.04);
+  }
+  .service-card h4{
+    font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:1.5rem;color:var(--amber);margin-bottom:.6rem;
+  }
+  .service-card p{font-size:.95rem;opacity:.85;line-height:1.5}
+
+  /* ─── footer ──────────────────────────────────────────────────── */
+  footer{
+    background:var(--ink);color:var(--cream);
+    padding:clamp(3rem, 6vh, 5rem) clamp(1.1rem, 4vw, 3.5rem) 2rem;
+    border-top:1px solid rgba(244,236,216,.12);
+  }
+  .footer-grid{
+    max-width:1180px;margin:0 auto;
+    display:grid;grid-template-columns:1fr;gap:2.4rem;
+    font-size:.94rem;line-height:1.6;
+  }
+  @media (min-width:780px){.footer-grid{grid-template-columns:2fr 1fr 1fr}}
+  .footer-grid h5{
+    font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:1.2rem;color:var(--amber);margin-bottom:.8rem;
+  }
+  .footer-grid a:hover{color:var(--amber)}
+  .footer-grid p{opacity:.85}
+  .footer-fine{
+    max-width:1180px;margin:3rem auto 0;
+    padding-top:2rem;border-top:1px solid rgba(244,236,216,.12);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;opacity:.55;
+  }
+
+  /* ─── scroll reveal ────────────────────────────────────────────── */
+  @supports (animation-timeline: view()){
+    .reveal{
+      animation:rise both;
+      animation-timeline:view();
+      animation-range:entry 0% cover 25%;
+    }
+    @keyframes rise{
+      from{opacity:0;transform:translateY(2.2rem)}
+      to{opacity:1;transform:translateY(0)}
+    }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal{animation:none}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topline">
+    <span><span class="dot"></span>Open kitchen · Rad Valley Rd, SY3</span>
+    <a href="tel:01743351511">01743 351511</a>
+  </div>
+
+  <!-- ─── HERO ───────────────────────────────────────────────── -->
+  <section class="hero">
+    <h1 class="hero__title">Ambrosia<br><em>Express.</em></h1>
+    <p class="hero__sub">A neighbourhood Chinese kitchen on Rad Valley Road. Six nights a week, late hours, the chow mein you actually want after a long Tuesday.</p>
+
+    <div class="hero__grid">
+      <a class="phone-cta" href="tel:01743351511" aria-label="Phone Ambrosia Express on 01743 351511">
+        <span class="phone-cta__label">Order — call us</span>
+        <span class="phone-cta__num">01743 351511</span>
+      </a>
+      <div class="meta-block">
+        <strong>Tonight</strong>
+        Open 5pm until 10pm<br>
+        Collection or delivery<br>
+        Oakfield Centre · SY3 8BD
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MARQUEE ────────────────────────────────────────────── -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Open 5pm tonight</span>
+      <span>Last orders 10pm Sun – Thu</span>
+      <span>10:30pm Friday &amp; Saturday</span>
+      <span>Closed Tuesdays</span>
+      <span>Collection or delivery</span>
+      <span>Call 01743 351511</span>
+      <span>Open 5pm tonight</span>
+      <span>Last orders 10pm Sun – Thu</span>
+      <span>10:30pm Friday &amp; Saturday</span>
+      <span>Closed Tuesdays</span>
+      <span>Collection or delivery</span>
+      <span>Call 01743 351511</span>
+    </div>
+  </div>
+
+  <!-- ─── KITCHEN INTRO ──────────────────────────────────────── -->
+  <section class="section section--cream">
+    <div class="kitchen reveal">
+      <div>
+        <div class="kitchen__eyebrow">The Kitchen</div>
+        <h2 class="kitchen__title">Late hours,<br>steady wok,<br><em>warm bag at the door.</em></h2>
+      </div>
+      <div class="kitchen__body">
+        <p>We're tucked into the Oakfield Centre on Rad Valley Road — close enough to Copthorne that the regulars know to call ahead by half past five. Anglo-Chinese cooking done the way you remember it: generous portions, the same dishes that have been working for years, plus a few that quietly improved without anyone noticing.</p>
+        <p>Phone the order through, give us a name and a postcode if you want it delivered, and we'll have it ready when you arrive — or at your door, hot, in the same window.</p>
+        <span class="kitchen__rating"><span class="stars">★★★★☆</span> 4.3 from 107 Google reviews</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MENU (broadsheet) ──────────────────────────────────── -->
+  <section class="section section--ink" id="menu">
+    <div class="menu reveal">
+
+      <div class="menu-head">
+        <h2><strong>The menu.</strong>A working sketch.</h2>
+        <p class="menu-head__aside">Below is a sample of what comes out of our kitchen. The full menu lives on the counter and in our heads — give us a call and we'll talk you through it.</p>
+      </div>
+
+      <div class="menu-col">
+        <h3><span class="num">01.</span>Signature dishes</h3>
+        <ul>
+          <li>Sweet &amp; Sour Chicken <span class="tag">House</span></li>
+          <li>Chicken Chow Mein <span class="tag">House</span></li>
+          <li>Beef &amp; Mushroom Curry <span class="tag">House</span></li>
+          <li>Chicken Meatballs <span class="tag">House</span></li>
+        </ul>
+
+        <h3 style="margin-top:2.5rem"><span class="num">02.</span>Chow Mein</h3>
+        <ul>
+          <li>Chicken Chow Mein</li>
+          <li>Beef Chow Mein</li>
+          <li>King Prawn Chow Mein</li>
+          <li>House Special Chow Mein</li>
+          <li>Vegetable Chow Mein</li>
+          <em class="note">All chow mein with thin egg noodles, beansprouts, soy. Call to add or remove anything.</em>
+        </ul>
+      </div>
+
+      <div class="menu-col">
+        <h3><span class="num">03.</span>Curries &amp; Sauces</h3>
+        <ul>
+          <li>Beef &amp; Mushroom Curry</li>
+          <li>Chicken Curry</li>
+          <li>Black Bean Sauce</li>
+          <li>Sweet &amp; Sour, any meat</li>
+          <em class="note">Curry sauce comes Anglo-Chinese style — mild and aromatic. Hotter on request.</em>
+        </ul>
+
+        <h3 style="margin-top:2.5rem"><span class="num">04.</span>Vegetarian</h3>
+        <ul>
+          <li>Mapo Tofu <span class="tag">V</span></li>
+          <li>Vegetable Chow Mein <span class="tag">V</span></li>
+          <li>Vegetable Curry <span class="tag">V</span></li>
+          <em class="note">Tofu, beancurd, mixed vegetables. Ask about anything you don't see — we usually have it.</em>
+        </ul>
+      </div>
+
+      <p class="menu-foot reveal">Prices and the full menu by phone. Most dishes available in regular and special portions. Call <a href="tel:01743351511" style="color:var(--amber);border-bottom:1px solid var(--amber)">01743&nbsp;351511</a>.</p>
+
+    </div>
+  </section>
+
+  <!-- ─── ORDER ──────────────────────────────────────────────── -->
+  <section class="section section--lacquer">
+    <div class="order reveal">
+      <div class="order__big">
+        <small>Order — call us</small>
+        <a href="tel:01743351511" aria-label="Phone Ambrosia Express">01743<br>351 511</a>
+        <p class="order__notes">Phone orders only — no apps, no website forms. Quickest if you call between five and seven; later on a Friday the kitchen runs hard. Collection or delivery, your choice on the call.</p>
+      </div>
+
+      <table class="hours-table">
+        <caption>Opening Hours</caption>
+        <tbody>
+          <tr><th>Sunday</th><td>5pm – 10pm</td></tr>
+          <tr><th>Monday</th><td>5pm – 10pm</td></tr>
+          <tr class="closed"><th>Tuesday</th><td>Closed</td></tr>
+          <tr><th>Wednesday</th><td>5pm – 10pm</td></tr>
+          <tr><th>Thursday</th><td>5pm – 10pm</td></tr>
+          <tr><th>Friday</th><td>5pm – 10:30pm</td></tr>
+          <tr><th>Saturday</th><td>5pm – 10:30pm</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ─── FIND US ────────────────────────────────────────────── -->
+  <section class="section section--ink">
+    <div class="find reveal">
+      <div class="find__addr">
+        <strong>Find us</strong>
+        Oakfield Centre,<br>
+        Rad Valley Road,<br>
+        Shrewsbury <em>SY3 8BD.</em>
+        <br>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Ambrosia+Express+Rad+Valley+Road+Shrewsbury+SY3+8BD" target="_blank" rel="noopener noreferrer">Open in maps →</a>
+      </div>
+
+      <div class="find__service">
+        <div class="service-card">
+          <h4>Collection</h4>
+          <p>Call your order through, we'll tell you when it's ready. Five minutes off Mytton Oak Road.</p>
+        </div>
+        <div class="service-card">
+          <h4>Delivery</h4>
+          <p>Local Shrewsbury postcodes. Ask about your area when you ring — we'll be straight with you about timing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h5>Ambrosia Express</h5>
+        <p>Neighbourhood Chinese kitchen.<br>Oakfield Centre, Rad Valley Road,<br>Shrewsbury SY3 8BD.</p>
+        <p style="margin-top:1.2rem"><a href="tel:01743351511" style="border-bottom:1px solid var(--amber);padding-bottom:2px">01743 351511</a></p>
+      </div>
+      <div>
+        <h5>Hours</h5>
+        <p>Sun – Mon · 5–10pm<br>Tue · Closed<br>Wed – Thu · 5–10pm<br>Fri – Sat · 5–10:30pm</p>
+      </div>
+      <div>
+        <h5>Service</h5>
+        <p>Collection<br>Delivery (local)<br>Phone orders only</p>
+      </div>
+    </div>
+    <div class="footer-fine">
+      <span>© Ambrosia Express · Shrewsbury</span>
+      <span>SY3 · Made for the neighbourhood</span>
+    </div>
+  </footer>
+
+</body>
+</html>
